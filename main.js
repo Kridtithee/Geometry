@@ -19,6 +19,18 @@ document.addEventListener('click', ev => {
   if (b) go(b.dataset.go);
 });
 
-initFormulas();
-initAnims();
-initGame();
+// เริ่มทีละส่วน: ถ้าส่วนไหนพัง (หรือไฟล์ของมันโหลดไม่ขึ้น) แท็บนั้นจะแสดงข้อความแจ้ง แทนที่จะว่างเปล่า
+// และไม่ลากส่วนอื่นพังตามไปด้วย
+function safeInit(name, tabId, fn) {
+  try {
+    if (typeof fn !== 'function') throw new Error(name + ' ไม่ถูกโหลด (ตรวจว่าไฟล์อยู่ในโฟลเดอร์เดียวกับ index.html และชื่อตรง)');
+    fn();
+  } catch (err) {
+    console.error(err);
+    $(tabId).innerHTML = '<div class="card"><b>⚠️ แท็บนี้เริ่มทำงานไม่ได้</b><div class="hint">' +
+      String(err && err.message || err) + '</div></div>';
+  }
+}
+safeInit('formulas.js', '#tab-formulas', typeof initFormulas === 'function' ? initFormulas : null);
+safeInit('anim.js', '#tab-anim', typeof initAnims === 'function' ? initAnims : null);
+safeInit('game.js', '#tab-game', typeof initGame === 'function' ? initGame : null);
