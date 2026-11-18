@@ -1,0 +1,144 @@
+/* =====================================================================
+   style.css — สี/ฟอนต์/หน้าตาทั้งเว็บ
+   อยากเปลี่ยนโทนสี แก้ตัวแปรใน :root (โหมดสว่าง) และ @media dark (โหมดมืด)
+   ===================================================================== */
+:root {
+  --bg: #f4f5fb; --card: #ffffff; --ink: #1d2140; --mut: #697093; --line: #e1e4f2;
+  --acc: #4f46e5; --acc2: #0d9488; --ok: #16a34a; --ng: #dc2626;
+  --okbg: #dcfce7; --ngbg: #fee2e2;
+  --shape: #c7d2fe; --shape2: #e0e7ff; --shape3: #a5b4fc; --stroke: #4f46e5; --water: #38bdf8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1124; --card: #181c38; --ink: #eceefc; --mut: #9aa0c8; --line: #2b3060;
+    --acc: #8b8cf7; --acc2: #2dd4bf; --okbg: #12361f; --ngbg: #3d1717;
+    --shape: rgba(129, 140, 248, .38); --shape2: rgba(165, 180, 252, .22); --shape3: rgba(99, 102, 241, .55);
+    --stroke: #a5b4fc; --water: #38bdf8;
+  }
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Sarabun", "Noto Sans Thai", system-ui, sans-serif; font-size: 16px; line-height: 1.55; }
+body.lock { overflow: hidden; }
+header { max-width: 760px; margin: auto; padding: 18px 16px 4px; }
+h1 { margin: 0; font-size: 22px; }
+header p { margin: 0; color: var(--mut); font-size: 14px; }
+main { max-width: 760px; margin: auto; padding: 8px 14px 100px; }
+h2 { margin: 0 0 2px; font-size: 20px; } h3 { margin: 0 0 6px; font-size: 17px; }
+.tab { display: none; } .tab.on { display: block; }
+.hint { color: var(--mut); font-size: 14px; margin: 6px 2px; }
+small { font-size: .78em; color: var(--mut); font-weight: 400; }
+
+/* ----- เมนูล่าง ----- */
+nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: var(--card); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); z-index: 20; }
+nav button { flex: 1; border: 0; background: none; color: var(--mut); padding: 7px 0 5px; font: inherit; font-size: 12px; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+nav button b { font-size: 20px; font-weight: 400; line-height: 1.2; }
+nav button.on { color: var(--acc); font-weight: 700; }
+
+/* ----- เศษส่วน ----- */
+.fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1.1; margin: 0 2px; font-size: .85em; }
+.fr > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 3px; }
+
+/* ----- ชิป / สวิตช์ / ปุ่ม ----- */
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+.chip { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 99px; padding: 6px 15px; font: inherit; font-size: 14px; cursor: pointer; }
+.chip.on { background: var(--acc); border-color: var(--acc); color: #fff; }
+.sw { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 8px 2px; }
+.sw input { width: 18px; height: 18px; accent-color: var(--acc); }
+.btn { border: 0; background: var(--acc); color: #fff; border-radius: 12px; padding: 10px 16px; font: inherit; font-weight: 700; cursor: pointer; }
+.btn.ghost { background: transparent; color: var(--acc); border: 1.5px solid var(--acc); }
+.btn.wide { width: 100%; margin-top: 10px; }
+.btn.small { margin-top: 14px; font-size: 14px; padding: 8px 14px; }
+
+/* ----- การ์ด ----- */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; margin: 10px 0; }
+.gh { font-weight: 700; color: var(--acc); margin: 20px 2px 0; font-size: 14px; }
+.item { display: flex; gap: 12px; align-items: center; cursor: pointer; }
+.item svg { width: 104px; flex: none; height: auto; }
+.item .nm { font-weight: 700; }
+.item .fm { font-size: 18px; margin-top: 2px; }
+.item:active { transform: scale(.99); }
+#list.blur .fm { filter: blur(8px); transition: filter .25s; }
+#list.blur .fm.show { filter: none; }
+
+/* ----- รูปทรง SVG ----- */
+svg { display: block; max-width: 100%; }
+.sf { fill: var(--shape); stroke: var(--stroke); stroke-width: 2; stroke-linejoin: round; }
+.sf2 { fill: var(--shape2); stroke: var(--stroke); stroke-width: 2; stroke-linejoin: round; }
+.sf3 { fill: var(--shape3); stroke: var(--stroke); stroke-width: 2; stroke-linejoin: round; }
+.ol { fill: none; stroke: var(--stroke); stroke-width: 2.2; stroke-linejoin: round; }
+.wtr { fill: var(--water); opacity: .85; }
+.dash { fill: none; stroke: var(--acc2); stroke-width: 1.7; stroke-dasharray: 4 3; }
+.dot { fill: var(--acc2); }
+.lbl { fill: var(--ink); font-size: 12px; font-weight: 700; text-anchor: middle; paint-order: stroke; stroke: var(--card); stroke-width: 3px; stroke-linejoin: round; font-family: inherit; }
+.lbl.r { text-anchor: end; }
+.lbl.acc { fill: var(--acc); }
+svg.mini .lbl { display: none; }
+
+/* ----- หน้าต่างทดลอง ----- */
+.sheet { position: fixed; inset: 0; background: rgba(10, 12, 30, .55); z-index: 50; display: flex; align-items: flex-end; justify-content: center; }
+.sheet[hidden] { display: none; }
+.panel { background: var(--card); width: 100%; max-width: 640px; max-height: 92vh; overflow-y: auto; border-radius: 22px 22px 0 0; padding: 18px 16px calc(26px + env(safe-area-inset-bottom)); position: relative; animation: up .22s ease-out; }
+@keyframes up { from { transform: translateY(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+.x { position: absolute; right: 12px; top: 12px; width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--bg); color: var(--ink); font-size: 16px; cursor: pointer; }
+.cat { color: var(--mut); font-size: 13px; }
+.labsvg svg { width: 100%; max-width: 330px; margin: 6px auto; height: auto; }
+.sliders label { display: block; margin: 8px 0; font-size: 15px; }
+.sliders b { color: var(--acc); }
+input[type=range] { width: 100%; accent-color: var(--acc); }
+.seg { display: flex; align-items: center; gap: 6px; margin: 10px 0; flex-wrap: wrap; font-size: 14px; }
+.seg span { color: var(--mut); margin-right: 4px; }
+.seg button { border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 10px; padding: 5px 12px; font: inherit; font-size: 14px; cursor: pointer; }
+.seg button.on { background: var(--acc); border-color: var(--acc); color: #fff; }
+.res { background: var(--bg); border-radius: 14px; padding: 12px 14px; margin-top: 8px; }
+.res .fm { font-size: 20px; font-weight: 700; }
+.res .extra { color: var(--acc2); font-size: 14px; margin-top: 4px; }
+.res .sub { margin-top: 6px; color: var(--mut); }
+.res .val { font-size: 22px; margin-top: 2px; }
+.res .val b { color: var(--acc); font-size: 26px; }
+.note { font-size: 13px; color: var(--mut); margin-top: 4px; }
+.tipbox { background: var(--okbg); border-radius: 12px; padding: 9px 12px; margin-top: 10px; font-size: 14.5px; }
+
+/* ----- แอนิเมชัน ----- */
+.an svg { width: 100%; height: auto; background: var(--bg); border-radius: 12px; }
+.an .cap { min-height: 3.2em; margin: 8px 2px; font-size: 15px; }
+.ctl { display: flex; gap: 12px; align-items: center; }
+.ctl .btn { flex: none; min-width: 104px; }
+
+/* ----- เทคนิคจำ ----- */
+.tipc { border-left: 6px solid var(--acc); }
+.tipc p { margin: 4px 0; } .tipc ul, .tipc ol { margin: 4px 0; padding-left: 20px; } .tipc li { margin: 3px 0; }
+.c1 { border-left-color: #ef4444; } .c2 { border-left-color: #f59e0b; } .c3 { border-left-color: #10b981; }
+.c4 { border-left-color: #3b82f6; } .c5 { border-left-color: #06b6d4; } .c6 { border-left-color: #8b5cf6; }
+.c7 { border-left-color: #ec4899; } .c8 { border-left-color: #dc2626; } .c9 { border-left-color: var(--acc); }
+
+/* ----- เกม ----- */
+.mode { display: flex; gap: 14px; align-items: center; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--card); color: var(--ink); border-radius: 16px; padding: 14px; margin: 10px 0; font: inherit; cursor: pointer; }
+.mode:disabled { opacity: .5; cursor: default; }
+.mode .mi { font-size: 26px; width: 44px; text-align: center; flex: none; }
+.gtop { display: flex; justify-content: space-between; font-weight: 700; margin: 8px 2px 4px; }
+.pg { height: 8px; background: var(--line); border-radius: 9px; overflow: hidden; }
+.pg i { display: block; height: 100%; background: var(--acc); transition: width .3s; }
+.qc { text-align: center; margin: 10px 0 6px; }
+.qc svg { width: 190px; height: auto; margin: 0 auto; }
+.qn { font-size: 17px; margin: 4px 0; }
+.qf { font-size: 22px; font-weight: 700; margin: 8px 0 4px; padding: 14px 10px; background: var(--card); border: 1px dashed var(--acc); border-radius: 14px; }
+.giv { font-size: 17px; margin-top: 4px; }
+.opt { display: block; width: 100%; text-align: left; border: 2px solid var(--line); background: var(--card); color: var(--ink); border-radius: 14px; padding: 12px 14px; margin: 8px 0; font: inherit; font-size: 18px; cursor: pointer; }
+.opt:disabled { cursor: default; }
+.opt.ok { border-color: var(--ok); background: var(--okbg); }
+.opt.ng { border-color: var(--ng); background: var(--ngbg); }
+.two { display: flex; gap: 10px; } .two > * { flex: 1; text-align: center; }
+.fb { border-radius: 14px; padding: 10px 14px; margin-top: 10px; }
+.fb.g { background: var(--okbg); } .fb.b { background: var(--ngbg); }
+.fx { margin-top: 5px; font-size: 15.5px; } .fx.tp { color: var(--mut); font-size: 14.5px; }
+.end { text-align: center; padding: 18px 0 6px; }
+.end .big { font-size: 60px; font-weight: 700; color: var(--acc); line-height: 1.1; } .end .big small { font-size: 26px; }
+.newbest { margin-top: 6px; font-weight: 700; color: var(--ok); }
+.miss .fm { font-size: 18px; margin: 3px 0; }
+.miss .tipbox { margin-top: 6px; }
+
+@media (min-width: 640px) {
+  #list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  #list .gh { grid-column: 1 / -1; }
+}
